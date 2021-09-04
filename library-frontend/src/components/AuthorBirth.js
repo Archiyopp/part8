@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ALL_AUTHORS, SET_BORN_TO } from '../queries';
 
 export default function AuthorBirth({ authors }) {
-  const [name, setName] = useState('');
+  const [name, setName] = useState('Robert Martin');
   const [born, setBorn] = useState('');
   const [setBornTo] = useMutation(SET_BORN_TO, {
     refetchQueries: [{ query: ALL_AUTHORS }],
@@ -11,6 +11,7 @@ export default function AuthorBirth({ authors }) {
   const submit = (event) => {
     event.preventDefault();
     setBornTo({ variables: { name, born: Number(born) } });
+    setBorn('');
   };
   return (
     <div>
