@@ -2,15 +2,16 @@ const { ApolloServer, gql } = require('apollo-server');
 const mongoose = require('mongoose');
 const Author = require('./models/Author');
 const Book = require('./models/Book');
+require('dotenv/config');
 
-const MONGODB_URI =
-  'mongodb+srv://archimen:test123@cluster0.sqnur.mongodb.net/library-app?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   })
   .then(() => {
     console.log('connected to MongoDB');
